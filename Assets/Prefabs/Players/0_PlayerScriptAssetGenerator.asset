@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 99c556f67bf5cb94dae531b914210b35, type: 3}
   m_Name: 0_PlayerScriptAssetGenerator
   m_EditorClassIdentifier: Assembly-CSharp-Editor::PlayerScriptAssetGenerator
-  playerScript: {fileID: 11500000, guid: e2ca01181da29b446b195f29576aaaf1, type: 3}
+  playerScript: {fileID: 11500000, guid: 2e0483af0d8824f4fade4a2513b471ab, type: 3}
   outputFolder: Assets/Prefabs/Players
