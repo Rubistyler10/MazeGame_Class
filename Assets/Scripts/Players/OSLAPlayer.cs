@@ -4,7 +4,8 @@ using UnityEngine;
 public class OSLAPlayer : Player
 {
     ForwardModel forwardModel = new ForwardModel();
-    Heuristic heuristic = new DistanceHeuristic();
+    private Heuristic heuristic = null;
+
     public override Action Think(Observation observation, int budget)
     {
         Action[] list_actions = observation.GetListActions();
@@ -30,6 +31,13 @@ public class OSLAPlayer : Player
     public void SetHeuristic(Heuristic new_heuristic)
     {
         heuristic = new_heuristic;
+    }
+
+    public override void Reset()
+    {
+        heuristic = GetComponent<Heuristic>();
+        if (heuristic == null) throw new System.Exception("OSLAPlayer requires a Heuristic component to function.");
+        Debug.Log("[OSLAPLAYER][RESET] Heuristic component found: " + heuristic.ToString());
     }
 
     public override string ToString()

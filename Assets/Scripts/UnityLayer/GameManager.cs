@@ -47,6 +47,7 @@ public class GameManager : GameSimulator
     [HideInInspector] public bool step_pressed = false;
     private GameObject player_dead_instance;
     private InputHandler inputHandler;
+    private HumanPlayer_InputHandler humanPlayer_inputHandler;
     const float CHANGE_SPEED_AMOUNT = 1f;
     const float STRONG_CHANGE_SPEED_AMOUNT = 2f;
     const float MIN_AUTO_PLAY_SPEED = 1f;
@@ -60,6 +61,8 @@ public class GameManager : GameSimulator
         CreateGame();
         // Spawn the game world representation of the game
         if (visualize_game) SpawnGameWorld();
+
+        SetUpHumanPlayerInputHandler();
     }
 
     // Set up the input handler for the game manager so it can receive inputs, if it doesn't already exist
@@ -71,10 +74,22 @@ public class GameManager : GameSimulator
             inputHandler.SetInputReceiver(this);
         }
     }
+
+    void SetUpHumanPlayerInputHandler()
+    {
+        if (player is HumanPlayer)
+        {
+            humanPlayer_inputHandler = this.gameObject.AddComponent<HumanPlayer_InputHandler>();
+            humanPlayer_inputHandler.enabled = true;
+            humanPlayer_inputHandler.humanPlayer = (HumanPlayer)player;
+        }
+    }
     
     // Create the underlying game
     void CreateGame()
     {
+        if (player == null) throw new System.Exception("Player is not set in GameManager");
+        if (maze == null) throw new System.Exception("Maze is not set in GameManager");
         gameScript = new Game();
         gameScript.SetupGame(maze, player, budget, max_iterations);
     }
@@ -344,6 +359,7 @@ public class GameManager : GameSimulator
         }
         else
         {
+            Debug.Log("debugging  target pos: " + target_pos);
             MovePlayerInstanceToPosition(target_pos);
             CheckAnimationEnd();
         } 

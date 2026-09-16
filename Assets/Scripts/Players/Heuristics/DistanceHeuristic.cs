@@ -4,7 +4,7 @@ public class DistanceHeuristic : Heuristic
 {
     public override float GetScore(Observation observation)
     {
-        float score = 0f;
+        float score;
 
         if (observation.IsInHole() || observation.IsInvalidPosition()) score = -1000f;
         else if (observation.ReachedGoal())
