@@ -172,6 +172,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8744375993389779967, guid: aece8a3c81ea17841bd05c1a3110f595, type: 3}
+      propertyPath: auto_play_speed
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 8744375993389779967, guid: aece8a3c81ea17841bd05c1a3110f595, type: 3}
       propertyPath: 'player_list.Array.data[0]'
       value: 
       objectReference: {fileID: 8643577159264756767, guid: bf288c143e731434ca69e605cc57be63, type: 3}

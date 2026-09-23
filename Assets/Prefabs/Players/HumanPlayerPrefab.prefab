@@ -45,4 +45,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HumanPlayer
   move_input: {x: 0, y: 0}
-  helper: {fileID: 6161973465079358281, guid: 23efff1765c3d7341807607506a4492a, type: 3}
+  helper: {fileID: 8643577159264756767, guid: bf288c143e731434ca69e605cc57be63, type: 3}
