@@ -33,8 +33,8 @@ public class OSLAPlayer : Player
         heuristic = new_heuristic;
     }
 
-    public override void Reset()
-    {
+    public override void ResetPlayer()
+    { 
         heuristic = GetComponent<Heuristic>();
         if (heuristic == null) throw new System.Exception("OSLAPlayer requires a Heuristic component to function.");
         Debug.Log("[OSLAPLAYER][RESET] Heuristic component found: " + heuristic.ToString());

@@ -2,6 +2,11 @@ using UnityEngine;
 
 public class RandomPlayer : Player
 {
+    public override void ResetPlayer()
+    {
+        // No reset needed for RandomPlayer
+    }
+
     public override Action Think(Observation observation, int budget)
     {
         Action[] list_actions = observation.GetListActions();

@@ -259,7 +259,26 @@ public class JPSPlayer : Player
         }
     }
 
-    public override void Reset()
+    public override Action Help(Observation observation, int budget, bool stepHelper = false)
+    {
+
+        /* 
+            For advising the player, we can't rely on think because the repeated stepping on the game
+            while waiting for player input will deplete the stack of actions, so we use the Help()
+            method to determine if we should consider the game as stepped and move to the next input.
+
+            Also, since the position of the player can stray away of the precalculated path, we have to recalculate
+            on every step. Changing the code to avoid path reconstruction and only return the needed step seems
+            very unnecesary for the effectively non-existant improvement, so we recreate the stack every time even
+            though we only use the first element.
+        */
+
+        FindPath(observation);
+        Debug.Log("[JPSPlayer][Help] Path found with " + actionStack.Count + " actions.");
+        return actionStack.Peek(); // Always Peek as the whole stack is unnecessary, we only need the first step of the current stack
+    }
+
+    public override void ResetPlayer()
     {
         cameFrom.Clear();
         cameFromAction.Clear();
@@ -270,6 +289,11 @@ public class JPSPlayer : Player
         heuristic = GetComponent<Heuristic>();
         if (heuristic == null) throw new System.Exception("JPSPlayer requires a Heuristic component to function.");
         Debug.Log("[JPSPlayer][RESET] Heuristic component found: " + heuristic.ToString());
+    }
+
+    public override string ToString()
+    {
+        return "JPSPlayer";
     }
 
 }
